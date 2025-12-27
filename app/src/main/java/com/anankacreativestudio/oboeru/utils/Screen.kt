@@ -1,0 +1,6 @@
+package com.anankacreativestudio.oboeru.utils
+
+sealed class Screen(val route: String) {
+    data object Hiragana: Screen("hiragana")
+    data object Katakana: Screen("katakana")
+}
