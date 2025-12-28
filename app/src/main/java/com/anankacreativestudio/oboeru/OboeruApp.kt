@@ -5,26 +5,40 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.anankacreativestudio.oboeru.ui.component.DrawerLayout
 import com.anankacreativestudio.oboeru.utils.AppNavGraph
-import com.anankacreativestudio.oboeru.utils.Screen
+import com.anankacreativestudio.oboeru.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun OboeruApp() {
+    val mainViewModel: MainViewModel = hiltViewModel()
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val gesturesDrawerEnabled = currentRoute == Screen.Hiragana.route
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerLayout()
+            DrawerLayout(
+                currentRoute = currentRoute,
+                onItemClick = { route ->
+                    navController.navigate(route) {
+                        launchSingleTop = true
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
+                    }
+                    scope.launch { drawerState.close() }
+                }
+            )
         }
     ) {
         AppNavGraph(
