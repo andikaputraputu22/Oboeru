@@ -39,7 +39,7 @@ fun DrawerLayout(
                 .padding(16.dp)
         ) {
             Text(
-                text = "Menu",
+                text = "Learn",
                 style = MaterialTheme.typography.labelMedium,
                 color = colors.onSurfaceVariant,
                 modifier = Modifier
@@ -61,6 +61,26 @@ fun DrawerLayout(
                 onClick = {
                     onItemClick(Screen.Katakana.route)
                 }
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Menu",
+                style = MaterialTheme.typography.labelMedium,
+                color = colors.onSurfaceVariant,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+            DrawerItem(
+                kana = "練",
+                title = "Practice"
+            )
+            DrawerItem(
+                kana = "進",
+                title = "Progress"
+            )
+            DrawerItem(
+                kana = "設",
+                title = "Settings"
             )
         }
     }
