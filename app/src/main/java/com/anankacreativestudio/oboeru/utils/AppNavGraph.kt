@@ -28,5 +28,11 @@ fun AppNavGraph(
                 onMenuClick = openDrawer
             )
         }
+        composable(Screen.Setting.route) {
+            //
+        }
+        composable(Screen.Quiz.route) {
+            //
+        }
     }
 }
