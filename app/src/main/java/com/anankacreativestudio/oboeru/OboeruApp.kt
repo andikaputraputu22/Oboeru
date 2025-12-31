@@ -12,6 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import com.anankacreativestudio.oboeru.ui.component.DrawerLayout
 import com.anankacreativestudio.oboeru.utils.AppNavGraph
 import com.anankacreativestudio.oboeru.utils.Screen
+import com.anankacreativestudio.oboeru.utils.navigateMain
+import com.anankacreativestudio.oboeru.utils.navigateSecondary
 import com.anankacreativestudio.oboeru.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,8 @@ fun OboeruApp(
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val gesturesDrawableEnabled = currentRoute == Screen.Hiragana.route
+            || currentRoute == Screen.Katakana.route
 
     LaunchedEffect(openQuizFromNotification) {
         if (openQuizFromNotification) {
@@ -36,18 +40,21 @@ fun OboeruApp(
 
     ModalNavigationDrawer(
         drawerState = drawerState,
+        gesturesEnabled = gesturesDrawableEnabled,
         drawerContent = {
             DrawerLayout(
                 currentRoute = currentRoute,
                 onItemClick = { route ->
-                    navController.navigate(route) {
-                        launchSingleTop = true
-                        popUpTo(navController.graph.startDestinationId) {
-                            inclusive = true
-                            saveState = true
+                    when (route) {
+                        Screen.Hiragana.route,
+                        Screen.Katakana.route -> {
+                            navController.navigateMain(route)
                         }
-                        restoreState = true
+                        else -> {
+                            navController.navigateSecondary(route)
+                        }
                     }
+
                     scope.launch { drawerState.close() }
                 }
             )

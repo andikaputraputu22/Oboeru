@@ -59,6 +59,7 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.work.runtime.ktx)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.compose.material.icons.extended)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
