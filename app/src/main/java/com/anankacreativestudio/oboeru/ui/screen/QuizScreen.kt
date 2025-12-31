@@ -21,7 +21,9 @@ import androidx.compose.ui.unit.sp
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 
 @Composable
-fun QuizScreen() {
+fun QuizScreen(
+    onBackClick: () -> Unit = {}
+) {
     val colors = MaterialTheme.colorScheme
 
     Scaffold(
@@ -37,7 +39,8 @@ fun QuizScreen() {
             ) {
                 HeaderPageWithBack(
                     title = "Quiz",
-                    imageVector = Icons.Default.Close
+                    imageVector = Icons.Default.Close,
+                    onBackClick = onBackClick
                 )
             }
         }

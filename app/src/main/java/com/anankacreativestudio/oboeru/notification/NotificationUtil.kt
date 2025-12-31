@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.anankacreativestudio.oboeru.MainActivity
+import com.anankacreativestudio.oboeru.QuizActivity
 import com.anankacreativestudio.oboeru.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -34,9 +35,8 @@ class NotificationUtil @Inject constructor(
     }
 
     fun showQuizNotification() {
-        val intent = Intent(context, MainActivity::class.java).apply {
-            putExtra("OPEN_QUIZ", true)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        val intent = Intent(context, QuizActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
 
         val pendingIntent = PendingIntent.getActivity(

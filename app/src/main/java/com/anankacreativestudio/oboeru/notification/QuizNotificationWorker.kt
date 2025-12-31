@@ -3,6 +3,7 @@ package com.anankacreativestudio.oboeru.notification
 import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -29,6 +30,11 @@ class QuizNotificationWorker @AssistedInject constructor(
             .setInitialDelay(delayMinutes.toLong(), TimeUnit.MINUTES)
             .build()
 
-        WorkManager.getInstance(applicationContext).enqueue(request)
+        WorkManager.getInstance(applicationContext)
+            .enqueueUniqueWork(
+                "quiz_notification",
+                ExistingWorkPolicy.REPLACE,
+                request
+            )
     }
 }

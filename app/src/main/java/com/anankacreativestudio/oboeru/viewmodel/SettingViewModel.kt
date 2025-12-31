@@ -2,28 +2,37 @@ package com.anankacreativestudio.oboeru.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.anankacreativestudio.oboeru.settings.NotificationScheduler
+import com.anankacreativestudio.oboeru.utils.SettingsPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    @param:ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context,
+    private val settingsPreferences: SettingsPreferences
 ) : ViewModel() {
 
-    private val _notificationEnabled = MutableStateFlow(false)
-    val notificationEnabled: StateFlow<Boolean> = _notificationEnabled.asStateFlow()
+    val notificationEnabled = settingsPreferences.notificationEnabled
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+           false
+        )
 
     fun onNotificationToggle(enabled: Boolean) {
-        _notificationEnabled.value = enabled
-        if (enabled) {
-            NotificationScheduler.start(context)
-        } else {
-            NotificationScheduler.stop(context)
+        viewModelScope.launch {
+            settingsPreferences.setNotificationEnabled(enabled)
+            if (enabled) {
+                NotificationScheduler.start(context)
+            } else {
+                NotificationScheduler.stop(context)
+            }
         }
     }
 }
