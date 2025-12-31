@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.anankacreativestudio.oboeru.ui.screen.HiraganaScreen
 import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
+import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
 import com.anankacreativestudio.oboeru.ui.screen.SettingScreen
 
 @Composable
@@ -37,7 +38,7 @@ fun AppNavGraph(
             )
         }
         composable(Screen.Quiz.route) {
-            //
+            QuizScreen()
         }
     }
 }

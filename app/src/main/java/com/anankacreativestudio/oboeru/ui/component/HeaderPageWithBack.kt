@@ -3,8 +3,6 @@ package com.anankacreativestudio.oboeru.ui.component
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -12,11 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun HeaderPageWithBack(
     title: String,
+    imageVector: ImageVector,
     onBackClick: () -> Unit = {}
 ) {
     Box(
@@ -30,7 +30,7 @@ fun HeaderPageWithBack(
                 .align(Alignment.CenterStart)
         ) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                imageVector = imageVector,
                 contentDescription = "Back"
             )
         }
