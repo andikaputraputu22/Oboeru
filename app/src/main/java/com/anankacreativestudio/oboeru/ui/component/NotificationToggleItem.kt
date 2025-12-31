@@ -4,24 +4,21 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 
 @Composable
-fun NotificationToggleItem() {
-    var enabled by rememberSaveable { mutableStateOf(true) }
-
+fun NotificationToggleItem(
+    isEnabled: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
     SettingSwitchItem(
         title = "Daily Recall",
         description = "Get daily notification to practice kana",
-        icon = if (enabled) {
+        icon = if (isEnabled) {
             Icons.Default.Notifications
         } else {
             Icons.Default.NotificationsOff
         },
-        checked = enabled,
-        onCheckedChange = { enabled = it }
+        checked = isEnabled,
+        onCheckedChange = onCheckedChange
     )
 }
