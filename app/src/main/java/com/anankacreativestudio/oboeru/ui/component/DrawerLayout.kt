@@ -80,7 +80,11 @@ fun DrawerLayout(
             )
             DrawerItem(
                 kana = "設",
-                title = "Settings"
+                title = "Settings",
+                selected = currentRoute == Screen.Setting.route,
+                onClick = {
+                    onItemClick(Screen.Setting.route)
+                }
             )
         }
     }
