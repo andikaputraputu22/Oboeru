@@ -38,7 +38,11 @@ fun AppNavGraph(
             )
         }
         composable(Screen.Quiz.route) {
-            QuizScreen()
+            QuizScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

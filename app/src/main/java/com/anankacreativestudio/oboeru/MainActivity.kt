@@ -23,15 +23,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        val openQuizFromNotification =
-            intent.getBooleanExtra("OPEN_QUIZ", false)
-
         setContent {
             OboeruTheme {
-                OboeruApp(
-                    openQuizFromNotification = openQuizFromNotification
-                )
+                OboeruApp()
             }
         }
     }

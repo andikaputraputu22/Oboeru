@@ -3,6 +3,7 @@ package com.anankacreativestudio.oboeru.injection
 import android.content.Context
 import com.anankacreativestudio.oboeru.notification.NotificationUtil
 import com.anankacreativestudio.oboeru.repository.KanaRepository
+import com.anankacreativestudio.oboeru.utils.SettingsPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,13 @@ object AppModule {
         @ApplicationContext context: Context
     ): NotificationUtil {
         return NotificationUtil(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSettingsPreferences(
+        @ApplicationContext context: Context
+    ): SettingsPreferences {
+        return SettingsPreferences(context)
     }
 }
