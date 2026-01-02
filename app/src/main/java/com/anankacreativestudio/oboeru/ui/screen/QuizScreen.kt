@@ -37,28 +37,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import com.anankacreativestudio.oboeru.models.QuizItem
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.anankacreativestudio.oboeru.ui.component.ConfettiEffect
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.QuizChoiceItem
+import com.anankacreativestudio.oboeru.viewmodel.QuizViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun QuizScreen(
     onBackClick: () -> Unit = {}
 ) {
+    val viewModel: QuizViewModel = hiltViewModel()
     val colors = MaterialTheme.colorScheme
     val haptic = LocalHapticFeedback.current
     val context = LocalContext.current
 
-    val quiz = remember {
-        QuizItem(
-            question = "あ",
-            correctAnswer = "a",
-            choices = listOf("a", "i", "u", "e"),
-            reading = "a"
-        )
-    }
+    val quiz by viewModel.quiz.collectAsStateWithLifecycle()
 
     var selectedAnswer by remember { mutableStateOf<String?>(null) }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
@@ -76,6 +72,7 @@ fun QuizScreen(
         }
     }
 
+    // Auto dismiss after determined time
 //    LaunchedEffect(isCorrect) {
 //        if (isCorrect != null) {
 //            delay(1500)
