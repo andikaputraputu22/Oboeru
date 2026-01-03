@@ -42,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.anankacreativestudio.oboeru.ui.component.ConfettiEffect
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.QuizChoiceItem
+import com.anankacreativestudio.oboeru.utils.rememberTextToSpeech
 import com.anankacreativestudio.oboeru.viewmodel.QuizViewModel
 import kotlinx.coroutines.delay
 
@@ -56,6 +57,7 @@ fun QuizScreen(
 
     val quiz by viewModel.quiz.collectAsStateWithLifecycle()
 
+    val isTtsReady = remember { mutableStateOf(false) }
     var selectedAnswer by remember { mutableStateOf<String?>(null) }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
     var showConfetti by remember { mutableStateOf(false) }
@@ -64,6 +66,10 @@ fun QuizScreen(
         targetValue = if (isCorrect == true) 1.1f else 1f,
         label = "scale"
     )
+
+    val speak = rememberTextToSpeech { ready ->
+        isTtsReady.value = ready
+    }
 
     LaunchedEffect(showConfetti) {
         if (showConfetti) {
@@ -184,8 +190,9 @@ fun QuizScreen(
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 IconButton(
+                    enabled = isTtsReady.value,
                     onClick = {
-                        //
+                        speak(quiz.question)
                     }
                 ) {
                     Icon(
