@@ -1,5 +1,9 @@
 package com.anankacreativestudio.oboeru.ui.screen
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.NotificationToggleItem
 import com.anankacreativestudio.oboeru.ui.component.SoundToggleItem
+import com.anankacreativestudio.oboeru.utils.hasNotificationPermission
 import com.anankacreativestudio.oboeru.viewmodel.SettingViewModel
 
 @Composable
@@ -28,6 +34,17 @@ fun SettingScreen(
 ) {
     val viewModel: SettingViewModel = hiltViewModel()
     val colors = MaterialTheme.colorScheme
+    val context = LocalContext.current
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.onNotificationToggle(true)
+        } else {
+            viewModel.onNotificationToggle(false)
+        }
+    }
 
     val notificationEnabled by viewModel.notificationEnabled.collectAsState()
 
@@ -60,7 +77,14 @@ fun SettingScreen(
                 NotificationToggleItem(
                     isEnabled = notificationEnabled,
                     onCheckedChange = { enabled ->
-                        viewModel.onNotificationToggle(enabled)
+                        when {
+                            !enabled -> viewModel.onNotificationToggle(false)
+                            context.hasNotificationPermission() -> viewModel.onNotificationToggle(true)
+                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ->
+                                permissionLauncher.launch(
+                                    Manifest.permission.POST_NOTIFICATIONS
+                                )
+                        }
                     }
                 )
             }
