@@ -3,6 +3,7 @@ package com.anankacreativestudio.oboeru.injection
 import android.content.Context
 import com.anankacreativestudio.oboeru.notification.NotificationUtil
 import com.anankacreativestudio.oboeru.repository.KanaRepository
+import com.anankacreativestudio.oboeru.repository.MainRepository
 import com.anankacreativestudio.oboeru.utils.SettingsPreferences
 import dagger.Module
 import dagger.Provides
@@ -19,6 +20,12 @@ object AppModule {
     @Provides
     fun provideKanaRepository(): KanaRepository {
         return KanaRepository()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMainRepository(): MainRepository {
+        return MainRepository()
     }
 
     @Singleton

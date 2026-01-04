@@ -72,7 +72,11 @@ fun DrawerLayout(
             )
             DrawerItem(
                 kana = "練",
-                title = "Practice"
+                title = "Practice",
+                selected = currentRoute == Screen.Practice.route,
+                onClick = {
+                    onItemClick(Screen.Practice.route)
+                }
             )
             DrawerItem(
                 kana = "進",
