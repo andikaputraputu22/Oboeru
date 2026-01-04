@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.anankacreativestudio.oboeru.ui.screen.HiraganaScreen
 import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
+import com.anankacreativestudio.oboeru.ui.screen.PracticeScreen
 import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
 import com.anankacreativestudio.oboeru.ui.screen.SettingScreen
 
@@ -28,6 +29,16 @@ fun AppNavGraph(
             KatakanaScreen(
                 title = "Katakana",
                 onMenuClick = openDrawer
+            )
+        }
+        composable(Screen.Practice.route) {
+            PracticeScreen(
+                onPracticeClick = { practiceId ->
+
+                },
+                onBackClick = {
+                    navController.popBackStack()
+                }
             )
         }
         composable(Screen.Setting.route) {
