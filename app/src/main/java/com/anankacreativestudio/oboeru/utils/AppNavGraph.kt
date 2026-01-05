@@ -9,6 +9,7 @@ import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
 import com.anankacreativestudio.oboeru.ui.screen.PracticeScreen
 import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
 import com.anankacreativestudio.oboeru.ui.screen.SettingScreen
+import com.anankacreativestudio.oboeru.ui.screen.SpeedRoundScreen
 
 @Composable
 fun AppNavGraph(
@@ -33,8 +34,13 @@ fun AppNavGraph(
         }
         composable(Screen.Practice.route) {
             PracticeScreen(
-                onPracticeClick = { practiceId ->
-
+                onPracticeClick = { mode ->
+                    when (mode.id) {
+                        "kana_recall" -> navController.navigate(Screen.KanaRecall.route)
+                        "reverse_recall" -> navController.navigate(Screen.ReverseRecall.route)
+                        "listening" -> navController.navigate(Screen.Listening.route)
+                        "speed_round" -> navController.navigate(Screen.SpeedRound.route)
+                    }
                 },
                 onBackClick = {
                     navController.popBackStack()
@@ -50,6 +56,13 @@ fun AppNavGraph(
         }
         composable(Screen.Quiz.route) {
             QuizScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(Screen.SpeedRound.route) {
+            SpeedRoundScreen(
                 onBackClick = {
                     navController.popBackStack()
                 }

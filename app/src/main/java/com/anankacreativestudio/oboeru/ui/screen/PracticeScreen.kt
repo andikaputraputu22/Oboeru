@@ -17,13 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.anankacreativestudio.oboeru.models.PracticeMode
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.PracticeItem
 import com.anankacreativestudio.oboeru.viewmodel.PracticeViewModel
 
 @Composable
 fun PracticeScreen(
-    onPracticeClick: (String) -> Unit,
+    onPracticeClick: (PracticeMode) -> Unit,
     onBackClick: () -> Unit = {}
 ) {
     val viewModel: PracticeViewModel = hiltViewModel()
@@ -59,7 +60,7 @@ fun PracticeScreen(
                 PracticeItem(
                     mode = mode,
                     onClick = {
-                        onPracticeClick(mode.id)
+                        onPracticeClick(mode)
                     }
                 )
             }
