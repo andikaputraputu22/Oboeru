@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.anankacreativestudio.oboeru.ui.screen.HiraganaScreen
+import com.anankacreativestudio.oboeru.ui.screen.KanaRecallScreen
 import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
 import com.anankacreativestudio.oboeru.ui.screen.PracticeScreen
 import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
@@ -56,6 +57,13 @@ fun AppNavGraph(
         }
         composable(Screen.Quiz.route) {
             QuizScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(Screen.KanaRecall.route) {
+            KanaRecallScreen(
                 onBackClick = {
                     navController.popBackStack()
                 }
