@@ -9,6 +9,7 @@ import com.anankacreativestudio.oboeru.ui.screen.KanaRecallScreen
 import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
 import com.anankacreativestudio.oboeru.ui.screen.PracticeScreen
 import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
+import com.anankacreativestudio.oboeru.ui.screen.ReverseRecallScreen
 import com.anankacreativestudio.oboeru.ui.screen.SettingScreen
 import com.anankacreativestudio.oboeru.ui.screen.SpeedRoundScreen
 
@@ -64,6 +65,13 @@ fun AppNavGraph(
         }
         composable(Screen.KanaRecall.route) {
             KanaRecallScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(Screen.ReverseRecall.route) {
+            ReverseRecallScreen(
                 onBackClick = {
                     navController.popBackStack()
                 }
