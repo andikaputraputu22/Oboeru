@@ -6,6 +6,8 @@ sealed class SpeedRoundState {
 
     data object Loading: SpeedRoundState()
 
+    data object Ready: SpeedRoundState()
+
     data class Playing(
         val quiz: QuizItem,
         val remainingTime: Int,
