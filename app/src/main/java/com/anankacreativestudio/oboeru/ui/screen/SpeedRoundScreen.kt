@@ -31,6 +31,7 @@ import com.anankacreativestudio.oboeru.ui.component.ChoiceButton
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.QuestionCard
 import com.anankacreativestudio.oboeru.ui.component.SpeedRoundHeader
+import com.anankacreativestudio.oboeru.ui.component.SpeedRoundReady
 import com.anankacreativestudio.oboeru.ui.component.SpeedRoundResult
 import com.anankacreativestudio.oboeru.utils.SpeedRoundEvent
 import com.anankacreativestudio.oboeru.utils.SpeedRoundState
@@ -43,6 +44,7 @@ fun SpeedRoundScreen(
 ) {
     val viewModel: SpeedRoundViewModel = hiltViewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val highScore by viewModel.highScore.collectAsStateWithLifecycle()
     val colors = MaterialTheme.colorScheme
     val haptic = LocalHapticFeedback.current
 
@@ -86,6 +88,14 @@ fun SpeedRoundScreen(
                     ) {
                         CircularProgressIndicator()
                     }
+                }
+                SpeedRoundState.Ready -> {
+                    SpeedRoundReady(
+                        highScore = highScore,
+                        onStartClick = {
+                            viewModel.onEvent(SpeedRoundEvent.Start)
+                        }
+                    )
                 }
                 is SpeedRoundState.Playing -> {
                     val s = state as SpeedRoundState.Playing

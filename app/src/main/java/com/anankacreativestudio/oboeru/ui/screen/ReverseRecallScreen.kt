@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -84,8 +84,8 @@ fun ReverseRecallScreen(
                     color = colors.background
                 ) {
                     HeaderPageWithBack(
-                        title = "Quiz",
-                        imageVector = Icons.Default.Close,
+                        title = "Reverse Recall",
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         onBackClick = onBackClick
                     )
                 }

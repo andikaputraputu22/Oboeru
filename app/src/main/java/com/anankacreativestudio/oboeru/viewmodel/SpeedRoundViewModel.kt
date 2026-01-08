@@ -1,18 +1,24 @@
 package com.anankacreativestudio.oboeru.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.anankacreativestudio.oboeru.models.QuizItem
 import com.anankacreativestudio.oboeru.repository.KanaRepository
+import com.anankacreativestudio.oboeru.utils.GamePreferences
 import com.anankacreativestudio.oboeru.utils.SpeedRoundEvent
 import com.anankacreativestudio.oboeru.utils.SpeedRoundState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SpeedRoundViewModel @Inject constructor(
-    private val kanaRepository: KanaRepository
+    private val kanaRepository: KanaRepository,
+    private val gamePreferences: GamePreferences
 ) : ViewModel() {
 
     private val totalTime = 60
@@ -21,13 +27,21 @@ class SpeedRoundViewModel @Inject constructor(
         MutableStateFlow<SpeedRoundState>(SpeedRoundState.Loading)
     val state = _state.asStateFlow()
 
+    val highScore = gamePreferences.speedRoundHighScore
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            0
+        )
+
     init {
-        onEvent(SpeedRoundEvent.Start)
+        _state.value = SpeedRoundState.Ready
     }
 
     fun onEvent(event: SpeedRoundEvent) {
         when (val s = _state.value) {
-            SpeedRoundState.Loading -> {
+            SpeedRoundState.Loading -> Unit
+            SpeedRoundState.Ready -> {
                 if (event is SpeedRoundEvent.Start) {
                     startNewGame()
                 }
@@ -43,17 +57,17 @@ class SpeedRoundViewModel @Inject constructor(
                     }
                     SpeedRoundEvent.Tick -> {
                         if (s.remainingTime <= 1) {
-                            onEvent(SpeedRoundEvent.Finish)
+                            viewModelScope.launch {
+                                gamePreferences.updateHighScoreIfNeeded(s.score)
+                            }
+                            _state.value = SpeedRoundState.Finished(
+                                score = s.score
+                            )
                         } else {
                             _state.value = s.copy(
                                 remainingTime = s.remainingTime - 1
                             )
                         }
-                    }
-                    SpeedRoundEvent.Finish -> {
-                        _state.value = SpeedRoundState.Finished(
-                            score = s.score
-                        )
                     }
                     else -> Unit
                 }

@@ -4,6 +4,7 @@ import android.content.Context
 import com.anankacreativestudio.oboeru.notification.NotificationUtil
 import com.anankacreativestudio.oboeru.repository.KanaRepository
 import com.anankacreativestudio.oboeru.repository.MainRepository
+import com.anankacreativestudio.oboeru.utils.GamePreferences
 import com.anankacreativestudio.oboeru.utils.SettingsPreferences
 import dagger.Module
 import dagger.Provides
@@ -42,5 +43,13 @@ object AppModule {
         @ApplicationContext context: Context
     ): SettingsPreferences {
         return SettingsPreferences(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGamePreferences(
+        @ApplicationContext context: Context
+    ): GamePreferences {
+        return GamePreferences(context)
     }
 }
