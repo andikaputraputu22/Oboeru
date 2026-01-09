@@ -28,8 +28,8 @@ fun ChoiceButton(
             .height(56.dp),
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = colors.secondaryContainer,
-            contentColor = colors.onSecondaryContainer
+            containerColor = colors.surfaceVariant,
+            contentColor = colors.onSurfaceVariant
         )
     ) {
         Text(
