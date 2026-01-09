@@ -36,6 +36,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.anankacreativestudio.oboeru.ui.component.ConfettiEffect
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
+import com.anankacreativestudio.oboeru.ui.component.KanaModeSelector
 import com.anankacreativestudio.oboeru.ui.component.NextQuestionButton
 import com.anankacreativestudio.oboeru.ui.component.QuizChoiceItem
 import com.anankacreativestudio.oboeru.viewmodel.ReverseRecallViewModel
@@ -49,6 +50,7 @@ fun ReverseRecallScreen(
     val colors = MaterialTheme.colorScheme
     val haptic = LocalHapticFeedback.current
 
+    val kanaMode by viewModel.kanaMode.collectAsStateWithLifecycle()
     val quiz by viewModel.quiz.collectAsStateWithLifecycle()
 
     var isNextEnabled by remember { mutableStateOf(true) }
@@ -98,7 +100,16 @@ fun ReverseRecallScreen(
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(16.dp))
+                KanaModeSelector(
+                    selected = kanaMode,
+                    onSelected = { mode ->
+                        viewModel.setKanaMode(mode)
+                        selectedAnswer = null
+                        isCorrect = null
+                    }
+                )
+                Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = quiz.question,
                     fontSize = 64.sp,
