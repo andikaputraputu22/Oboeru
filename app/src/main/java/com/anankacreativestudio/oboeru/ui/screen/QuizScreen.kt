@@ -55,6 +55,7 @@ fun QuizScreen(
     val haptic = LocalHapticFeedback.current
     val context = LocalContext.current
 
+    val soundEnabled by viewModel.soundEnabled.collectAsStateWithLifecycle()
     val quiz by viewModel.quiz.collectAsStateWithLifecycle()
 
     val isTtsReady = remember { mutableStateOf(false) }
@@ -192,7 +193,9 @@ fun QuizScreen(
                 IconButton(
                     enabled = isTtsReady.value,
                     onClick = {
-                        speak(quiz.question)
+                        if (soundEnabled) {
+                            speak(quiz.question)
+                        }
                     }
                 ) {
                     Icon(

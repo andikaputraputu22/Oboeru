@@ -25,6 +25,13 @@ class SettingViewModel @Inject constructor(
            false
         )
 
+    val soundEnabled = settingsPreferences.soundEnabled
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            true
+        )
+
     fun onNotificationToggle(enabled: Boolean) {
         viewModelScope.launch {
             settingsPreferences.setNotificationEnabled(enabled)
@@ -33,6 +40,12 @@ class SettingViewModel @Inject constructor(
             } else {
                 NotificationScheduler.stop(context)
             }
+        }
+    }
+
+    fun onSoundToggle(enabled: Boolean) {
+        viewModelScope.launch {
+            settingsPreferences.setSoundEnabled(enabled)
         }
     }
 }

@@ -16,12 +16,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.NotificationToggleItem
 import com.anankacreativestudio.oboeru.ui.component.SoundToggleItem
@@ -46,7 +46,8 @@ fun SettingScreen(
         }
     }
 
-    val notificationEnabled by viewModel.notificationEnabled.collectAsState()
+    val notificationEnabled by viewModel.notificationEnabled.collectAsStateWithLifecycle()
+    val soundEnabled by viewModel.soundEnabled.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = Modifier
@@ -89,7 +90,12 @@ fun SettingScreen(
                 )
             }
             item {
-                SoundToggleItem()
+                SoundToggleItem(
+                    isEnabled = soundEnabled,
+                    onCheckedChange = { enabled ->
+                        viewModel.onSoundToggle(enabled)
+                    }
+                )
             }
         }
     }

@@ -14,15 +14,28 @@ class SettingsPreferences @Inject constructor(
 
     private val prefNotificationEnabled =
         booleanPreferencesKey("notification_enabled")
+    private val prefSoundEnabled =
+        booleanPreferencesKey("sound_enabled")
 
     val notificationEnabled: Flow<Boolean> =
         context.dataStore.data.map { prefs ->
             prefs[prefNotificationEnabled] ?: false
         }
 
+    val soundEnabled: Flow<Boolean> =
+        context.dataStore.data.map { prefs ->
+            prefs[prefSoundEnabled] ?: true
+        }
+
     suspend fun setNotificationEnabled(enabled: Boolean) {
         context.dataStore.edit { prefs ->
             prefs[prefNotificationEnabled] = enabled
+        }
+    }
+
+    suspend fun setSoundEnabled(enabled: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[prefSoundEnabled] = enabled
         }
     }
 }
