@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.anankacreativestudio.oboeru.models.QuizItem
 import com.anankacreativestudio.oboeru.repository.KanaRepository
+import com.anankacreativestudio.oboeru.utils.SettingsPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,12 +16,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuizViewModel @Inject constructor(
-    private val kanaRepository: KanaRepository
+    private val kanaRepository: KanaRepository,
+    private val settingsPreferences: SettingsPreferences
 ) : ViewModel() {
 
     private val refreshTrigger = MutableSharedFlow<Unit>(
         extraBufferCapacity = 1
     )
+
+    val soundEnabled = settingsPreferences.soundEnabled
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            true
+        )
 
     val quiz: StateFlow<QuizItem> =
         refreshTrigger
