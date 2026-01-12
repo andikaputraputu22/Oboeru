@@ -1,6 +1,7 @@
 package com.anankacreativestudio.oboeru.ui.screen
 
 import android.Manifest
+import android.app.Activity
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,20 +13,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.anankacreativestudio.oboeru.ui.component.ConfirmationDialog
 import com.anankacreativestudio.oboeru.ui.component.HeaderPageWithBack
 import com.anankacreativestudio.oboeru.ui.component.NotificationToggleItem
 import com.anankacreativestudio.oboeru.ui.component.SoundToggleItem
 import com.anankacreativestudio.oboeru.utils.hasNotificationPermission
+import com.anankacreativestudio.oboeru.utils.openAppNotificationSettings
 import com.anankacreativestudio.oboeru.viewmodel.SettingViewModel
 
 @Composable
@@ -35,6 +43,12 @@ fun SettingScreen(
     val viewModel: SettingViewModel = hiltViewModel()
     val colors = MaterialTheme.colorScheme
     val context = LocalContext.current
+    val activity = context as Activity
+
+    var showPermissionDialog by remember { mutableStateOf(false) }
+
+    val notificationEnabled by viewModel.notificationEnabled.collectAsStateWithLifecycle()
+    val soundEnabled by viewModel.soundEnabled.collectAsStateWithLifecycle()
 
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
@@ -42,12 +56,33 @@ fun SettingScreen(
         if (isGranted) {
             viewModel.onNotificationToggle(true)
         } else {
-            viewModel.onNotificationToggle(false)
+            val shouldShowRationale =
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                    activity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
+
+            if (!shouldShowRationale) {
+                showPermissionDialog = true
+            } else {
+                viewModel.onNotificationToggle(false)
+            }
         }
     }
 
-    val notificationEnabled by viewModel.notificationEnabled.collectAsStateWithLifecycle()
-    val soundEnabled by viewModel.soundEnabled.collectAsStateWithLifecycle()
+    if (showPermissionDialog) {
+        ConfirmationDialog(
+            title = "Notification Permission Required",
+            description = "Notifications are currently disabled. Enable notification permission in Settings to receive daily recall reminders.",
+            confirmLabel = "Open Settings",
+            icon = Icons.Default.NotificationsOff,
+            onDismiss = { showPermissionDialog = false },
+            onConfirm = {
+                showPermissionDialog = false
+                context.openAppNotificationSettings()
+            }
+        )
+    }
 
     Scaffold(
         modifier = Modifier
@@ -85,6 +120,7 @@ fun SettingScreen(
                                 permissionLauncher.launch(
                                     Manifest.permission.POST_NOTIFICATIONS
                                 )
+                            else -> viewModel.onNotificationToggle(true)
                         }
                     }
                 )
