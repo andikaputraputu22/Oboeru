@@ -14,11 +14,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.anankacreativestudio.oboeru.models.Kana
 import com.anankacreativestudio.oboeru.ui.component.HeaderPage
+import com.anankacreativestudio.oboeru.ui.component.KanaDetailBottomSheet
 import com.anankacreativestudio.oboeru.ui.component.KanaItem
+import com.anankacreativestudio.oboeru.utils.rememberTextToSpeech
 import com.anankacreativestudio.oboeru.viewmodel.KatakanaViewModel
 
 @Composable
@@ -29,6 +37,14 @@ fun KatakanaScreen(
     val viewModel: KatakanaViewModel = hiltViewModel()
     val colors = MaterialTheme.colorScheme
     val katakanaList = viewModel.katakanaList
+    val soundEnabled by viewModel.soundEnabled.collectAsStateWithLifecycle()
+
+    var selectedKana by remember { mutableStateOf<Kana?>(null) }
+    val isTtsReady = remember { mutableStateOf(false) }
+
+    val speak = rememberTextToSpeech { ready ->
+        isTtsReady.value = ready
+    }
 
     Scaffold(
         modifier = Modifier
@@ -63,9 +79,28 @@ fun KatakanaScreen(
             ) { kana ->
                 KanaItem(
                     kana = kana.kana,
-                    romaji = kana.romaji
+                    romaji = kana.romaji,
+                    onClick = {
+                        selectedKana = kana
+                    }
                 )
             }
         }
+    }
+
+    selectedKana?.let { kana ->
+        KanaDetailBottomSheet(
+            kana = kana.kana,
+            romaji = kana.romaji,
+            soundEnabled = isTtsReady.value,
+            onPlaySound = {
+                if (soundEnabled) {
+                    speak(kana.kana)
+                }
+            },
+            onDismiss = {
+                selectedKana = null
+            }
+        )
     }
 }
