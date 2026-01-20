@@ -60,6 +60,8 @@ fun KanaDetailBottomSheet(
                 color = colors.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(24.dp))
+            ExampleWordCard()
+            Spacer(modifier = Modifier.height(24.dp))
             FilledTonalIconButton(
                 enabled = soundEnabled,
                 onClick = onPlaySound,
