@@ -12,9 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.anankacreativestudio.oboeru.models.Kana
 
 @Composable
-fun ExampleWordCard() {
+fun ExampleWordCard(
+    kana: Kana
+) {
     val colors = MaterialTheme.colorScheme
 
     Column(
@@ -24,14 +27,14 @@ fun ExampleWordCard() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "ひと (hito)",
+            text = "${kana.exampleKana} (${kana.exampleRomaji})",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.SemiBold,
             color = colors.onSurface
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "orang",
+            text = kana.exampleMeaning ?: "",
             style = MaterialTheme.typography.bodySmall,
             color = colors.onSurfaceVariant
         )

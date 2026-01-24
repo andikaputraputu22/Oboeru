@@ -21,12 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.anankacreativestudio.oboeru.models.Kana
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KanaDetailBottomSheet(
-    kana: String,
-    romaji: String,
+    kana: Kana,
     soundEnabled: Boolean,
     onPlaySound: () -> Unit,
     onDismiss: () -> Unit
@@ -48,19 +48,19 @@ fun KanaDetailBottomSheet(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = kana,
+                text = kana.kana,
                 fontSize = 96.sp,
                 fontWeight = FontWeight.Bold,
                 color = colors.onSurface
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = romaji,
+                text = kana.romaji,
                 style = MaterialTheme.typography.titleMedium,
                 color = colors.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(24.dp))
-            ExampleWordCard()
+            ExampleWordCard(kana)
             Spacer(modifier = Modifier.height(24.dp))
             FilledTonalIconButton(
                 enabled = soundEnabled,
