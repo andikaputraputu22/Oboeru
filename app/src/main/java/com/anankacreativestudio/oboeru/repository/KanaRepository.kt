@@ -8,70 +8,70 @@ class KanaRepository @Inject constructor() {
 
     val hiraganaList = listOf(
         // a
-        Kana(1, KanaType.HIRAGANA, "あ", "a"),
-        Kana(2, KanaType.HIRAGANA, "い", "i"),
-        Kana(3, KanaType.HIRAGANA, "う", "u"),
-        Kana(4, KanaType.HIRAGANA, "え", "e"),
-        Kana(5, KanaType.HIRAGANA, "お", "o"),
+        Kana(1, KanaType.HIRAGANA, "あ", "a", "あさ", "asa", "pagi"),
+        Kana(2, KanaType.HIRAGANA, "い", "i", "いぬ", "inu", "anjing"),
+        Kana(3, KanaType.HIRAGANA, "う", "u", "うみ", "umi", "laut"),
+        Kana(4, KanaType.HIRAGANA, "え", "e", "えき", "eki", "stasiun"),
+        Kana(5, KanaType.HIRAGANA, "お", "o", "おちゃ", "ocha", "teh"),
 
         // ka
-        Kana(6, KanaType.HIRAGANA, "か", "ka"),
-        Kana(7, KanaType.HIRAGANA, "き", "ki"),
-        Kana(8, KanaType.HIRAGANA, "く", "ku"),
-        Kana(9, KanaType.HIRAGANA, "け", "ke"),
-        Kana(10, KanaType.HIRAGANA, "こ", "ko"),
+        Kana(6, KanaType.HIRAGANA, "か", "ka", "かさ", "kasa", "payung"),
+        Kana(7, KanaType.HIRAGANA, "き", "ki", "き", "ki", "pohon"),
+        Kana(8, KanaType.HIRAGANA, "く", "ku", "くつ", "kutsu", "sepatu"),
+        Kana(9, KanaType.HIRAGANA, "け", "ke", "けさ", "kesa", "pagi ini"),
+        Kana(10, KanaType.HIRAGANA, "こ", "ko", "こえ", "koe", "suara"),
 
         // sa
-        Kana(11, KanaType.HIRAGANA, "さ", "sa"),
-        Kana(12, KanaType.HIRAGANA, "し", "shi"),
-        Kana(13, KanaType.HIRAGANA, "す", "su"),
-        Kana(14, KanaType.HIRAGANA, "せ", "se"),
-        Kana(15, KanaType.HIRAGANA, "そ", "so"),
+        Kana(11, KanaType.HIRAGANA, "さ", "sa", "さかな", "sakana", "ikan"),
+        Kana(12, KanaType.HIRAGANA, "し", "shi", "しろ", "shiro", "putih"),
+        Kana(13, KanaType.HIRAGANA, "す", "su", "すし", "sushi", "sushi"),
+        Kana(14, KanaType.HIRAGANA, "せ", "se", "せかい", "sekai", "dunia"),
+        Kana(15, KanaType.HIRAGANA, "そ", "so", "そら", "sora", "langit"),
 
         // ta
-        Kana(16, KanaType.HIRAGANA, "た", "ta"),
-        Kana(17, KanaType.HIRAGANA, "ち", "chi"),
-        Kana(18, KanaType.HIRAGANA, "つ", "tsu"),
-        Kana(19, KanaType.HIRAGANA, "て", "te"),
-        Kana(20, KanaType.HIRAGANA, "と", "to"),
+        Kana(16, KanaType.HIRAGANA, "た", "ta", "たまご", "tamago", "telur"),
+        Kana(17, KanaType.HIRAGANA, "ち", "chi", "ちず", "chizu", "peta"),
+        Kana(18, KanaType.HIRAGANA, "つ", "tsu", "つき", "tsuki", "bulan"),
+        Kana(19, KanaType.HIRAGANA, "て", "te", "て", "te", "tangan"),
+        Kana(20, KanaType.HIRAGANA, "と", "to", "とり", "tori", "burung"),
 
         // na
-        Kana(21, KanaType.HIRAGANA, "な", "na"),
-        Kana(22, KanaType.HIRAGANA, "に", "ni"),
-        Kana(23, KanaType.HIRAGANA, "ぬ", "nu"),
-        Kana(24, KanaType.HIRAGANA, "ね", "ne"),
-        Kana(25, KanaType.HIRAGANA, "の", "no"),
+        Kana(21, KanaType.HIRAGANA, "な", "na", "なつ", "natsu", "musim panas"),
+        Kana(22, KanaType.HIRAGANA, "に", "ni", "にく", "niku", "daging"),
+        Kana(23, KanaType.HIRAGANA, "ぬ", "nu", "ぬの", "nuno", "kain"),
+        Kana(24, KanaType.HIRAGANA, "ね", "ne", "ねこ", "neko", "kucing"),
+        Kana(25, KanaType.HIRAGANA, "の", "no", "のみもの", "nomimono", "minuman"),
 
         // ha
-        Kana(26, KanaType.HIRAGANA, "は", "ha"),
-        Kana(27, KanaType.HIRAGANA, "ひ", "hi"),
-        Kana(28, KanaType.HIRAGANA, "ふ", "fu"),
-        Kana(29, KanaType.HIRAGANA, "へ", "he"),
-        Kana(30, KanaType.HIRAGANA, "ほ", "ho"),
+        Kana(26, KanaType.HIRAGANA, "は", "ha", "はな", "hana", "bunga"),
+        Kana(27, KanaType.HIRAGANA, "ひ", "hi", "ひと", "hito", "orang"),
+        Kana(28, KanaType.HIRAGANA, "ふ", "fu", "ふゆ", "fuyu", "musim dingin"),
+        Kana(29, KanaType.HIRAGANA, "へ", "he", "へや", "heya", "kamar"),
+        Kana(30, KanaType.HIRAGANA, "ほ", "ho", "ほん", "hon", "buku"),
 
         // ma
-        Kana(31, KanaType.HIRAGANA, "ま", "ma"),
-        Kana(32, KanaType.HIRAGANA, "み", "mi"),
-        Kana(33, KanaType.HIRAGANA, "む", "mu"),
-        Kana(34, KanaType.HIRAGANA, "め", "me"),
-        Kana(35, KanaType.HIRAGANA, "も", "mo"),
+        Kana(31, KanaType.HIRAGANA, "ま", "ma", "まど", "mado", "jendela"),
+        Kana(32, KanaType.HIRAGANA, "み", "mi", "みず", "mizu", "air"),
+        Kana(33, KanaType.HIRAGANA, "む", "mu", "むし", "mushi", "serangga"),
+        Kana(34, KanaType.HIRAGANA, "め", "me", "め", "me", "mata"),
+        Kana(35, KanaType.HIRAGANA, "も", "mo", "もり", "mori", "hutan"),
 
         // ya
-        Kana(36, KanaType.HIRAGANA, "や", "ya"),
-        Kana(37, KanaType.HIRAGANA, "ゆ", "yu"),
-        Kana(38, KanaType.HIRAGANA, "よ", "yo"),
+        Kana(36, KanaType.HIRAGANA, "や", "ya", "やま", "yama", "gunung"),
+        Kana(37, KanaType.HIRAGANA, "ゆ", "yu", "ゆき", "yuki", "salju"),
+        Kana(38, KanaType.HIRAGANA, "よ", "yo", "よる", "yoru", "malam"),
 
         // ra
-        Kana(39, KanaType.HIRAGANA, "ら", "ra"),
-        Kana(40, KanaType.HIRAGANA, "り", "ri"),
-        Kana(41, KanaType.HIRAGANA, "る", "ru"),
-        Kana(42, KanaType.HIRAGANA, "れ", "re"),
-        Kana(43, KanaType.HIRAGANA, "ろ", "ro"),
+        Kana(39, KanaType.HIRAGANA, "ら", "ra", "らいねん", "rainen", "tahun depan"),
+        Kana(40, KanaType.HIRAGANA, "り", "ri", "りんご", "ringo", "apel"),
+        Kana(41, KanaType.HIRAGANA, "る", "ru", "るす", "rusu", "tidak di rumah"),
+        Kana(42, KanaType.HIRAGANA, "れ", "re", "れい", "rei", "nol"),
+        Kana(43, KanaType.HIRAGANA, "ろ", "ro", "ろく", "roku", "enam"),
 
         // wa + n
-        Kana(44, KanaType.HIRAGANA, "わ", "wa"),
-        Kana(45, KanaType.HIRAGANA, "を", "wo"),
-        Kana(46, KanaType.HIRAGANA, "ん", "n")
+        Kana(44, KanaType.HIRAGANA, "わ", "wa", "わたし", "watashi", "saya"),
+        Kana(45, KanaType.HIRAGANA, "を", "wo", "ごはんをたべる", "gohan wo taberu", "makan nasi"),
+        Kana(46, KanaType.HIRAGANA, "ん", "n", "ほん", "hon", "buku")
     )
 
     val katakanaList = listOf(

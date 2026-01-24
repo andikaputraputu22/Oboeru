@@ -90,12 +90,11 @@ fun HiraganaScreen(
 
     selectedKana?.let { kana ->
         KanaDetailBottomSheet(
-            kana = kana.kana,
-            romaji = kana.romaji,
+            kana = kana,
             soundEnabled = isTtsReady.value,
             onPlaySound = {
                 if (soundEnabled) {
-                    speak(kana.kana)
+                    kana.exampleKana?.let { speak(it) }
                 }
             },
             onDismiss = {
