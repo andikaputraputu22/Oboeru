@@ -76,69 +76,69 @@ class KanaRepository @Inject constructor() {
 
     val katakanaList = listOf(
         // a
-        Kana(101, KanaType.KATAKANA, "ア", "a"),
-        Kana(102, KanaType.KATAKANA, "イ", "i"),
-        Kana(103, KanaType.KATAKANA, "ウ", "u"),
-        Kana(104, KanaType.KATAKANA, "エ", "e"),
-        Kana(105, KanaType.KATAKANA, "オ", "o"),
+        Kana(101, KanaType.KATAKANA, "ア", "a", "アメ", "ame", "permen"),
+        Kana(102, KanaType.KATAKANA, "イ", "i", "イス", "isu", "kursi"),
+        Kana(103, KanaType.KATAKANA, "ウ", "u", "ウサギ", "usagi", "kelinci"),
+        Kana(104, KanaType.KATAKANA, "エ", "e", "エアコン", "eakon", "AC"),
+        Kana(105, KanaType.KATAKANA, "オ", "o", "オレンジ", "orenji", "jeruk"),
 
         // ka
-        Kana(106, KanaType.KATAKANA, "カ", "ka"),
-        Kana(107, KanaType.KATAKANA, "キ", "ki"),
-        Kana(108, KanaType.KATAKANA, "ク", "ku"),
-        Kana(109, KanaType.KATAKANA, "ケ", "ke"),
-        Kana(110, KanaType.KATAKANA, "コ", "ko"),
+        Kana(106, KanaType.KATAKANA, "カ", "ka", "カメラ", "kamera", "kamera"),
+        Kana(107, KanaType.KATAKANA, "キ", "ki", "キーボード", "kiiboodo", "keyboard"),
+        Kana(108, KanaType.KATAKANA, "ク", "ku", "クラス", "kurasu", "kelas"),
+        Kana(109, KanaType.KATAKANA, "ケ", "ke", "ケーキ", "keeki", "kue"),
+        Kana(110, KanaType.KATAKANA, "コ", "ko", "コーヒー", "koohii", "kopi"),
 
         // sa
-        Kana(111, KanaType.KATAKANA, "サ", "sa"),
-        Kana(112, KanaType.KATAKANA, "シ", "shi"),
-        Kana(113, KanaType.KATAKANA, "ス", "su"),
-        Kana(114, KanaType.KATAKANA, "セ", "se"),
-        Kana(115, KanaType.KATAKANA, "ソ", "so"),
+        Kana(111, KanaType.KATAKANA, "サ", "sa", "サラダ", "sarada", "salad"),
+        Kana(112, KanaType.KATAKANA, "シ", "shi", "シャツ", "shatsu", "kaos/kemeja"),
+        Kana(113, KanaType.KATAKANA, "ス", "su", "スーパー", "suupaa", "supermarket"),
+        Kana(114, KanaType.KATAKANA, "セ", "se", "セーター", "seetaa", "sweater"),
+        Kana(115, KanaType.KATAKANA, "ソ", "so", "ソファ", "sofa", "sofa"),
 
         // ta
-        Kana(116, KanaType.KATAKANA, "タ", "ta"),
-        Kana(117, KanaType.KATAKANA, "チ", "chi"),
-        Kana(118, KanaType.KATAKANA, "ツ", "tsu"),
-        Kana(119, KanaType.KATAKANA, "テ", "te"),
-        Kana(120, KanaType.KATAKANA, "ト", "to"),
+        Kana(116, KanaType.KATAKANA, "タ", "ta", "タクシー", "takushii", "taksi"),
+        Kana(117, KanaType.KATAKANA, "チ", "chi", "チーズ", "chiizu", "keju"),
+        Kana(118, KanaType.KATAKANA, "ツ", "tsu", "ツアー", "tsuaa", "tur"),
+        Kana(119, KanaType.KATAKANA, "テ", "te", "テレビ", "terebi", "televisi"),
+        Kana(120, KanaType.KATAKANA, "ト", "to", "トマト", "tomato", "tomat"),
 
         // na
-        Kana(121, KanaType.KATAKANA, "ナ", "na"),
-        Kana(122, KanaType.KATAKANA, "ニ", "ni"),
-        Kana(123, KanaType.KATAKANA, "ヌ", "nu"),
-        Kana(124, KanaType.KATAKANA, "ネ", "ne"),
-        Kana(125, KanaType.KATAKANA, "ノ", "no"),
+        Kana(121, KanaType.KATAKANA, "ナ", "na", "ナイフ", "naifu", "pisau"),
+        Kana(122, KanaType.KATAKANA, "ニ", "ni", "ニュース", "nyuusu", "berita"),
+        Kana(123, KanaType.KATAKANA, "ヌ", "nu", "ヌードル", "nuudoru", "mi"),
+        Kana(124, KanaType.KATAKANA, "ネ", "ne", "ネクタイ", "nekutai", "dasi"),
+        Kana(125, KanaType.KATAKANA, "ノ", "no", "ノート", "nooto", "buku catatan"),
 
         // ha
-        Kana(126, KanaType.KATAKANA, "ハ", "ha"),
-        Kana(127, KanaType.KATAKANA, "ヒ", "hi"),
-        Kana(128, KanaType.KATAKANA, "フ", "fu"),
-        Kana(129, KanaType.KATAKANA, "ヘ", "he"),
-        Kana(130, KanaType.KATAKANA, "ホ", "ho"),
+        Kana(126, KanaType.KATAKANA, "ハ", "ha", "ハンバーガー", "hanbaagaa", "hamburger"),
+        Kana(127, KanaType.KATAKANA, "ヒ", "hi", "ヒーター", "hiitaa", "pemanas"),
+        Kana(128, KanaType.KATAKANA, "フ", "fu", "フォーク", "fooku", "garpu"),
+        Kana(129, KanaType.KATAKANA, "ヘ", "he", "ヘルメット", "herumetto", "helm"),
+        Kana(130, KanaType.KATAKANA, "ホ", "ho", "ホテル", "hoteru", "hotel"),
 
         // ma
-        Kana(131, KanaType.KATAKANA, "マ", "ma"),
-        Kana(132, KanaType.KATAKANA, "ミ", "mi"),
-        Kana(133, KanaType.KATAKANA, "ム", "mu"),
-        Kana(134, KanaType.KATAKANA, "メ", "me"),
-        Kana(135, KanaType.KATAKANA, "モ", "mo"),
+        Kana(131, KanaType.KATAKANA, "マ", "ma", "マスク", "masuku", "masker"),
+        Kana(132, KanaType.KATAKANA, "ミ", "mi", "ミルク", "miruku", "susu"),
+        Kana(133, KanaType.KATAKANA, "ム", "mu", "ムービー", "muubii", "film"),
+        Kana(134, KanaType.KATAKANA, "メ", "me", "メール", "meeru", "email"),
+        Kana(135, KanaType.KATAKANA, "モ", "mo", "モバイル", "mobairu", "ponsel"),
 
         // ya
-        Kana(136, KanaType.KATAKANA, "ヤ", "ya"),
-        Kana(137, KanaType.KATAKANA, "ユ", "yu"),
-        Kana(138, KanaType.KATAKANA, "ヨ", "yo"),
+        Kana(136, KanaType.KATAKANA, "ヤ", "ya", "ヤード", "yaado", "yard"),
+        Kana(137, KanaType.KATAKANA, "ユ", "yu", "ユニフォーム", "yunifoomu", "seragam"),
+        Kana(138, KanaType.KATAKANA, "ヨ", "yo", "ヨーグルト", "yooguruto", "yogurt"),
 
         // ra
-        Kana(139, KanaType.KATAKANA, "ラ", "ra"),
-        Kana(140, KanaType.KATAKANA, "リ", "ri"),
-        Kana(141, KanaType.KATAKANA, "ル", "ru"),
-        Kana(142, KanaType.KATAKANA, "レ", "re"),
-        Kana(143, KanaType.KATAKANA, "ロ", "ro"),
+        Kana(139, KanaType.KATAKANA, "ラ", "ra", "ラジオ", "rajio", "radio"),
+        Kana(140, KanaType.KATAKANA, "リ", "ri", "リモコン", "rimokon", "remote"),
+        Kana(141, KanaType.KATAKANA, "ル", "ru", "ルール", "ruuru", "aturan"),
+        Kana(142, KanaType.KATAKANA, "レ", "re", "レモン", "remon", "lemon"),
+        Kana(143, KanaType.KATAKANA, "ロ", "ro", "ロボット", "robotto", "robot"),
 
         // wa + n
-        Kana(144, KanaType.KATAKANA, "ワ", "wa"),
-        Kana(145, KanaType.KATAKANA, "ヲ", "wo"),
-        Kana(146, KanaType.KATAKANA, "ン", "n")
+        Kana(144, KanaType.KATAKANA, "ワ", "wa", "ワイン", "wain", "anggur (wine)"),
+        Kana(145, KanaType.KATAKANA, "ヲ", "wo", "ヲタク", "otaku", "penggemar berat"),
+        Kana(146, KanaType.KATAKANA, "ン", "n", "パン", "pan", "roti")
     )
 }
