@@ -62,6 +62,14 @@ fun DrawerLayout(
                     onItemClick(Screen.Katakana.route)
                 }
             )
+            DrawerItem(
+                kana = "語",
+                title = "Kotoba",
+                selected = currentRoute == Screen.Kotoba.route,
+                onClick = {
+                    //
+                }
+            )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = "Menu",
