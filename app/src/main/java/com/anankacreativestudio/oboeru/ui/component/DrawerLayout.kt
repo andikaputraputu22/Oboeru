@@ -67,7 +67,7 @@ fun DrawerLayout(
                 title = "Kotoba",
                 selected = currentRoute == Screen.Kotoba.route,
                 onClick = {
-                    //
+                    onItemClick(Screen.Kotoba.route)
                 }
             )
             Spacer(modifier = Modifier.height(12.dp))
