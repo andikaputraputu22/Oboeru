@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.anankacreativestudio.oboeru.ui.screen.HiraganaScreen
 import com.anankacreativestudio.oboeru.ui.screen.KanaRecallScreen
 import com.anankacreativestudio.oboeru.ui.screen.KatakanaScreen
+import com.anankacreativestudio.oboeru.ui.screen.KotobaScreen
 import com.anankacreativestudio.oboeru.ui.screen.PracticeScreen
 import com.anankacreativestudio.oboeru.ui.screen.QuizScreen
 import com.anankacreativestudio.oboeru.ui.screen.ReverseRecallScreen
@@ -31,6 +32,12 @@ fun AppNavGraph(
         composable(Screen.Katakana.route) {
             KatakanaScreen(
                 title = "Katakana",
+                onMenuClick = openDrawer
+            )
+        }
+        composable(Screen.Kotoba.route) {
+            KotobaScreen(
+                title = "Kotoba",
                 onMenuClick = openDrawer
             )
         }
