@@ -38,7 +38,8 @@ fun AppNavGraph(
         composable(Screen.Kotoba.route) {
             KotobaScreen(
                 title = "Kotoba",
-                onMenuClick = openDrawer
+                onMenuClick = openDrawer,
+                route = Screen.Kotoba.route
             )
         }
         composable(Screen.Practice.route) {

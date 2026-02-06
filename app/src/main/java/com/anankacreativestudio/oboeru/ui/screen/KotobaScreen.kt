@@ -16,7 +16,8 @@ import com.anankacreativestudio.oboeru.ui.component.HeaderPage
 @Composable
 fun KotobaScreen(
     title: String,
-    onMenuClick: () -> Unit = {}
+    onMenuClick: () -> Unit = {},
+    route: String
 ) {
     val colors = MaterialTheme.colorScheme
 
@@ -33,6 +34,7 @@ fun KotobaScreen(
             ) {
                 HeaderPage(
                     title = title,
+                    route = route,
                     onMenuClick = onMenuClick
                 )
             }
