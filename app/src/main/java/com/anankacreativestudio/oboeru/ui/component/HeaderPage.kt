@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Icon
@@ -14,12 +15,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.anankacreativestudio.oboeru.utils.Screen
 
 @Composable
 fun HeaderPage(
     title: String,
+    route: String = "",
     onMenuClick: () -> Unit = {},
-    onNotificationClick: () -> Unit = {}
+    onNotificationClick: () -> Unit = {},
+    onAddKotobaClick: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -43,12 +47,20 @@ fun HeaderPage(
             style = MaterialTheme.typography.titleLarge
         )
         IconButton(
-            onClick = onNotificationClick,
+            onClick = if (route == Screen.Kotoba.route) {
+                onAddKotobaClick
+            } else {
+                onNotificationClick
+            },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
         ) {
             Icon(
-                imageVector = Icons.Default.Notifications,
+                imageVector = if (route == Screen.Kotoba.route) {
+                    Icons.Default.Create
+                } else {
+                    Icons.Default.Notifications
+                },
                 contentDescription = "Notification"
             )
         }
