@@ -1,7 +1,6 @@
 package com.anankacreativestudio.oboeru.repository
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.AutoStories
 import androidx.compose.material.icons.filled.SyncAlt
 import androidx.compose.material.icons.filled.Timer
@@ -22,12 +21,6 @@ class MainRepository @Inject constructor() {
             title = "Reverse Recall",
             description = "Pick the correct kana from romaji",
             icon = Icons.Default.SyncAlt
-        ),
-        PracticeMode(
-            id = "listening",
-            title = "Listening Practice",
-            description = "Listen and choose the correct kana",
-            icon = Icons.AutoMirrored.Filled.VolumeUp
         ),
         PracticeMode(
             id = "speed_round",
