@@ -1,4 +1,10 @@
 <resources>
+    <!-- WAJIB: Credit strings - jangan dihapus -->
+    <string name="developer_name">Ananka Creative Studio</string>
+    <string name="developer_contact">081339891936</string>
+    <string name="app_copyright">© 2026 Ananka Creative Studio</string>
+    <string name="developer_credit">Developed by Ananka Creative Studio</string>
+
     <string name="app_name">Oboeru</string>
     <string name="title_activity_quiz">QuizActivity</string>
 </resources>

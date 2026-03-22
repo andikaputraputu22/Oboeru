@@ -1,3 +1,16 @@
+/*
+ * =====================================================
+ * OBOERU - ANDROID APPLICATION
+ * =====================================================
+ * Developer: Ananka Creative Studio
+ * Contact: 081339891936
+ * © 2026 - All Rights Reserved
+ *
+ * PENTING: Credit developer tidak boleh dihapus
+ * Untuk support & custom development hubungi developer
+ * =====================================================
+ */
+
 package com.anankacreativestudio.oboeru
 
 import android.app.Application

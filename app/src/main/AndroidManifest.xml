@@ -14,6 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oboeru">
+
+        <meta-data
+            android:name="app.developer"
+            android:value="Ananka Creative Studio" />
+        <meta-data
+            android:name="app.developer.contact"
+            android:value="081339891936" />
+        <meta-data
+            android:name="app.copyright"
+            android:value="© 2026 Ananka Creative Studio" />
+
         <activity
             android:name=".QuizActivity"
             android:exported="false"

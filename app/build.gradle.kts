@@ -1,3 +1,10 @@
+/*
+ * Oboeru - Build Configuration
+ * Developer: Ananka Creative Studio
+ * Contact: 081339891936
+ * © 2026 - All rights reserved
+ */
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
